@@ -1,10 +1,12 @@
 import React from 'react'
-import { Github, Linkedin, Twitter } from "lucide-react";
+import Navbar from '@/app/components/navbar'
+import Header from '@/app/components/header'
 
 const main = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      main
+    <div className='w-screen'>
+      <Header/>
+      <Navbar/>
     </div>
   )
 }
