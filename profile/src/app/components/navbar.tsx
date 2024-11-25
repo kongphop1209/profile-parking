@@ -2,9 +2,9 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="bg-black w-screen z-50">
-      <div className="w-full">
-        <ul className="flex flex-row justify-end items-center space-x-10 text-white py-4 px-10">
+    <nav className="fixed w-full top-11 z-50">
+      <div className="w-full flex justify-end">
+        <ul className=" flex flex-row bg-black border rounded-lg items-center space-x-10 py-4 px-10 me-5">
           <li>
             <a href="#home" className="hover:text-gray-400 transition">Home</a>
           </li>
