@@ -12,7 +12,9 @@ export default function Home() {
       <Header/>
       <div className='h-20'></div>
       <Introduce/>
+      <div className='h-20'></div>
       <AboutMe/>
+      <div className='h-20'></div>
       <Skills/>
     </div>
   );

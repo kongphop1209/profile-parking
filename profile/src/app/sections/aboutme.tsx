@@ -22,7 +22,7 @@ const AboutMe = () => {
         <img
           src={MyselfImage.src}
           alt=""
-          className="rounded-full shadow-lg border border-gray-300 w-48 h-48 object-cover"
+          className="rounded-full shadow-lg border border-gray-300 w-60 h-60 object-cover"
         />
       </div>
     </section>
