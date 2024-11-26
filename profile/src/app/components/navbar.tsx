@@ -46,7 +46,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="fixed w-full top-11 z-50">
-        <div className="w-full flex justify-end items-center px-5">
+        <div className="w-full flex justify-end items-center px-5 ">
           {/* Mobile menu toggle button */}
           {isMobile && (
             <button
@@ -73,10 +73,10 @@ const Navbar = () => {
           {/* Navbar menu */}
           <ul
             className={`${
-              isMobile ? "absolute top-full right-10 w-full bg-black" : "flex"
+              isMobile ? "absolute top-full right-10 w-full bg-black" : "flex "
             } ${
               isMobileMenuOpen ? "flex flex-col w-max gap-5  justify-center items-center p-8 transition-all duration-500 ease-in-out " : "hidden transition-all duration-500 ease-in-out"
-            } lg:flex lg:bg-black lg:flex-row border rounded-lg lg:space-x-10 lg:bg-transparent lg:items-center lg:py-4 lg:px-10 `}
+            } lg:flex lg:flex-row border rounded-lg lg:space-x-10 lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 `}
             style={{
               top: isMobileMenuOpen ? '48px' : 'auto', 
             }}
