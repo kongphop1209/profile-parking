@@ -6,6 +6,8 @@ import { Link } from "react-scroll";
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -14,10 +16,18 @@ const Navbar = () => {
       setScrollPosition(window.scrollY);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024); // Check for mobile view
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    handleResize(); // Check initial screen size
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -26,17 +36,51 @@ const Navbar = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      left: 0, 
-      behavior: "smooth", 
+      left: 0,
+      behavior: "smooth",
     });
   };
+
   const buttonPosition = Math.min(scrollPosition / 2, 100);
 
   return (
     <div>
       <nav className="fixed w-full top-11 z-50">
-        <div className="w-full flex justify-end">
-          <ul className="flex flex-row bg-black border rounded-lg items-center space-x-10 py-4 px-10 me-5">
+        <div className="w-full flex justify-end items-center px-5">
+          {/* Mobile menu toggle button */}
+          {isMobile && (
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="block lg:hidden p-2"
+              aria-label="Toggle menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          )}
+          {/* Navbar menu */}
+          <ul
+            className={`${
+              isMobile ? "absolute top-full right-10 w-full bg-black" : "flex"
+            } ${
+              isMobileMenuOpen ? "flex flex-col w-max gap-5  justify-center items-center p-8 transition-all duration-500 ease-in-out " : "hidden transition-all duration-500 ease-in-out"
+            } lg:flex lg:bg-black lg:flex-row border rounded-lg lg:space-x-10 lg:bg-transparent lg:items-center lg:py-4 lg:px-10 `}
+            style={{
+              top: isMobileMenuOpen ? '48px' : 'auto', 
+            }}
+          >
             <li>
               <Link
                 to="home"
@@ -86,7 +130,7 @@ const Navbar = () => {
                 to="experience"
                 smooth={true}
                 duration={500}
-                offset={-(window.innerHeight / 2) + 100}
+                offset={-(window.innerHeight / 2) + 150}
                 className="cursor-pointer hover:text-gray-400 transition"
               >
                 Experience
@@ -107,7 +151,7 @@ const Navbar = () => {
         </div>
       </nav>
       <button
-        onClick={scrollToTop} 
+        onClick={scrollToTop}
         className="fixed right-10 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
         style={{
           bottom: `${Math.max(10, 100 - buttonPosition)}px`,
