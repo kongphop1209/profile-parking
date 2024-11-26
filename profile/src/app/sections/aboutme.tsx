@@ -21,7 +21,7 @@ const AboutMe = () => {
       </div>
       <div className="flex justify-center items-center w-1/2">
         <Image
-          src={MyselfImage.src}
+          src={MyselfImage}
           alt="Kongphop's picture"
           width={250}
           height={250}

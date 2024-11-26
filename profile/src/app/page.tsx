@@ -1,13 +1,13 @@
 import React from 'react';
-import Navbar from "./components/navbar";
-import Header from "./components/header";
-import Introduce from "./sections/introduce";
-import AboutMe from "./sections/aboutme";
-import Skills from "./sections/skills";
-import Projects from "./sections/projects";
-import Experience from "./sections/experience";
-import Contact from "./sections/contact";
-import Footer from "./components/footer";
+import Navbar from "@/app/components/navbar";
+import Header from "@/app/components/header";
+import Introduce from "@/app/sections/introduce";
+import AboutMe from "@/app/sections/aboutme";
+import Skills from "@/app/sections/skills";
+import Projects from "@/app/sections/projects";
+import Experience from "@/app/sections/experience";
+import Contact from "@/app/sections/contact";
+import Footer from "@/app/components/footer";
 
 export default function Home() {
   return (
