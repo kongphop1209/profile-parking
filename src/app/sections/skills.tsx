@@ -2,11 +2,9 @@ import React from 'react';
 import {
   FaReact,
   FaHtml5,
-  FaCss3Alt,
   FaNodeJs,
   FaDatabase,
   FaGitAlt,
-  FaGithub,
   FaLinux,
   FaUsers,
   FaLightbulb,
