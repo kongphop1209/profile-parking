@@ -5,31 +5,27 @@ import { Link } from "react-scroll";
 import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
 
+const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
+
 const Navbar = () => {
-  const [isClient, setIsClient] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const sections = ["home", "about", "skills", "projects", "experience", "contact"];
-
   useEffect(() => {
-    if (typeof window === "undefined") return; // Ensure DOM is accessible only on the client
-
-    setIsClient(true);
+    // Ensure this runs only in the browser
+    if (typeof window === "undefined") return;
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
       // Determine active section based on scroll position
-      for (const section of sections) {
+      for (const section of SECTIONS) {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
-
-          // Check if section is in the middle 40% of the viewport
           if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
             setActiveSection(section);
             break;
@@ -53,16 +49,10 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Removed 'sections' from the dependency array
-
-  if (!isClient) return null;
+  }, []); // No dynamic dependency here
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   const buttonPosition = Math.min(scrollPosition / 2, 100);
@@ -75,7 +65,6 @@ const Navbar = () => {
           <span className="text-white">PARKING</span>
         </div>
 
-        {/* Mobile menu toggle button */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -99,7 +88,6 @@ const Navbar = () => {
           </button>
         )}
 
-        {/* Navbar menu */}
         <ul
           className={`${
             isMobile
@@ -109,13 +97,13 @@ const Navbar = () => {
               : "flex flex-row gap-6 items-center"
           }`}
         >
-          {sections.map((section) => (
+          {SECTIONS.map((section) => (
             <li key={section}>
               <Link
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-100} // Generalized offset for simplicity
+                offset={-100}
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
@@ -130,7 +118,6 @@ const Navbar = () => {
         </ul>
       </nav>
 
-      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
