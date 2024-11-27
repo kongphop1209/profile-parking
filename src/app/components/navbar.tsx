@@ -1,107 +1,91 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Link as ScrollLink } from "react-scroll";
-import dynamic from "next/dynamic";
-
-// Dynamically import Lottie to prevent SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import { Link } from "react-scroll";
+import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
-
-// Section IDs to navigate
-const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
+import MenuIcon from '@mui/icons-material/Menu'; // Import the MUI icon
 
 const Navbar = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
+  const sections = ["home", "about", "skills", "projects", "experience", "contact"];
+
   useEffect(() => {
-    setIsMounted(true);
+    setIsClient(true);
 
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const scrollY = window.scrollY;
-        const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
 
-        SECTIONS.forEach((section) => {
-          const element = document.getElementById(section);
-          if (element) {
-            const { top, bottom } = element.getBoundingClientRect();
-            if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
-              setActiveSection(section);
-            }
+      // Determine active section based on scroll position
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+
+          // Check if section is in the middle 40% of the viewport
+          if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
+            setActiveSection(section);
+            break;
           }
-        });
-
-        setScrollPosition(scrollY);
+        }
       }
+
+      setScrollPosition(scrollY);
     };
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener("scroll", handleScroll);
-      window.addEventListener("resize", handleResize);
-      handleResize();
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("resize", handleResize);
-      };
-    }
+    handleResize();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const scrollToTop = () => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  if (!isClient) return null;
 
-  // Prevent hydration mismatch
-  if (!isMounted) return null;
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
 
   const buttonPosition = Math.min(scrollPosition / 2, 100);
 
   return (
     <div>
-      {/* Navbar */}
-      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center shadow-md">
-        {/* Logo Section */}
+      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center">
         <div className="text-4xl flex items-center font-bold cursor-pointer">
-          <Lottie animationData={animationData} loop={true} className="w-12 h-12" />
-          <span className="text-white ml-2">PARKING</span>
+          <Lottie animationData={animationData} loop={true} className="w-16 h-16" />
+          <span className="text-white">PARKING</span>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu toggle button using Material UI icon */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="block lg:hidden text-white"
             aria-label="Toggle menu"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <MenuIcon className="w-6 h-6" />
           </button>
         )}
 
-        {/* Navigation Links */}
+        {/* Navbar menu */}
         <ul
           className={`${
             isMobile
@@ -111,13 +95,26 @@ const Navbar = () => {
               : "flex flex-row gap-6 items-center"
           }`}
         >
-          {SECTIONS.map((section) => (
+          {sections.map((section) => (
             <li key={section}>
-              <ScrollLink
+              <Link
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-80}
+                offset={-(window.innerHeight / 2) + 
+                         (section === "home"
+                           ? 70
+                           : section === "about"
+                           ? 300
+                           : section === "skills"
+                           ? 200
+                           : section === "projects"
+                           ? 150
+                           : section === "experience"
+                           ? 150
+                           : section === "contact"
+                           ? 100
+                           : 0)}
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
@@ -126,16 +123,16 @@ const Navbar = () => {
                 onClick={() => isMobile && setIsMobileMenuOpen(false)}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
-              </ScrollLink>
+              </Link>
             </li>
           ))}
         </ul>
       </nav>
 
-      {/* Scroll to Top Button */}
+      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        className="fixed right-12 px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
+        className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
         style={{
           bottom: `${Math.max(10, 100 - buttonPosition)}px`,
           opacity: scrollPosition > 200 ? 1 : 0,
