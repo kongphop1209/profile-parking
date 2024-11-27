@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
+import Lottie from "lottie-react";
+import animationData from "@/app/assets/animation_002.json";
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
@@ -10,14 +12,7 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const sections = [
-    "home", 
-    "about", 
-    "skills", 
-    "projects", 
-    "experience", 
-    "contact"
-  ];
+  const sections = ["home", "about", "skills", "projects", "experience", "contact"];
 
   useEffect(() => {
     setIsClient(true);
@@ -31,12 +26,9 @@ const Navbar = () => {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
-          
+
           // Check if section is in the middle 40% of the viewport
-          if (
-            top <= windowHeight * 0.6 && 
-            bottom >= windowHeight * 0.4
-          ) {
+          if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
             setActiveSection(section);
             break;
           }
@@ -47,13 +39,13 @@ const Navbar = () => {
     };
 
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); 
+      setIsMobile(window.innerWidth < 1024);
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
-    handleResize(); 
+    handleResize();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -75,75 +67,84 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex flex-row">
-        <div className="text-4xl font-bold text cursor-pointer">
-          <span>PARKING</span>
+      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center">
+        <div className="text-4xl flex items-center font-bold cursor-pointer">
+          <Lottie animationData={animationData} loop={true} className="w-16 h-16" />
+          <span className="text-white">PARKING</span>
         </div>
-        <div className="w-full flex justify-end items-center px-5">
-          {/* Mobile menu toggle button */}
-          {isMobile && (
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="block lg:hidden p-2"
-              aria-label="Toggle menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          )}
-          {/* Navbar menu */}
-          <ul
-            className={`${
-              isMobile ? "absolute top-full right-12 w-full bg-black" : "flex "
-            } ${
-              isMobileMenuOpen
-                ? "flex flex-col w-max justify-center items-center p-8 transition-all duration-500 ease-in-out"
-                : "hidden transition-all duration-500 ease-in-out"
-            } lg:flex lg:flex-row border rounded-lg lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 gap-5`}
-            style={{
-              top: isMobileMenuOpen ? "48px" : "auto",
-            }}
+
+        {/* Mobile menu toggle button */}
+        {isMobile && (
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="block lg:hidden text-white"
+            aria-label="Toggle menu"
           >
-            {sections.map((section) => (
-              <li key={section}>
-                <Link
-                  to={section}
-                  smooth={true}
-                  duration={500}
-                  offset={-(window.innerHeight / 2) + (section === 'home' ? 60 : 
-                           section === 'about' ? 70 : 
-                           section === 'skills' ? 150 : 
-                           section === 'projects' ? 100 : 
-                           section === 'experience' ? 150 : 
-                           section === 'contact' ? 100 : 0)}
-                  className={`cursor-pointer transition  ${
-                    activeSection === section 
-                      ? 'text-white font-bold p-2.5 border rounded-lg' 
-                      : 'hover:text-gray-400 p-2.5'
-                  }`}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        )}
+
+        {/* Navbar menu */}
+        <ul
+          className={`${
+            isMobile
+              ? `absolute top-16 right-4 bg-black text-white w-48 flex flex-col gap-4 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+                  isMobileMenuOpen ? "block" : "hidden"
+                }`
+              : "flex flex-row gap-6 items-center"
+          }`}
+        >
+          {sections.map((section) => (
+            <li key={section}>
+              <Link
+                to={section}
+                smooth={true}
+                duration={500}
+                offset={-(window.innerHeight / 2) + 
+                         (section === "home"
+                           ? 60
+                           : section === "about"
+                           ? 300
+                           : section === "skills"
+                           ? 200
+                           : section === "projects"
+                           ? 150
+                           : section === "experience"
+                           ? 150
+                           : section === "contact"
+                           ? 100
+                           : 0)}
+                className={`cursor-pointer transition ${
+                  activeSection === section
+                    ? "text-white font-bold border-b-2 border-blue-500"
+                    : "text-gray-400 hover:text-white"
+                }`}
+                onClick={() => isMobile && setIsMobileMenuOpen(false)}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
+
+      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        className="fixed flex items-center justify-center right-12 pt-0 px-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
+        className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
         style={{
           bottom: `${Math.max(10, 100 - buttonPosition)}px`,
           opacity: scrollPosition > 200 ? 1 : 0,

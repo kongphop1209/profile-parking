@@ -12,31 +12,31 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col">
       <Navbar />
-      <div className="h-20"></div>
+
       <div id="home">
         <Introduce />
       </div>
-      <div className="h-20"></div>
+
       <div id="about">
         <AboutMe />
       </div>
-      <div className="h-20"></div>
+
       <div id="skills">
         <Skills />
       </div>
-      <div className="h-20"></div>
+
       <div id="projects">
         <Projects />
       </div>
-      <div className="h-20"></div>
+
       <div id="experience">
         <Experience />
       </div>
-      <div className="h-20"></div>
+
       <div id="contact">
         <Contact />
       </div>
-      <div className="h-20"></div>
+
       <div>
         <Footer />
       </div>
