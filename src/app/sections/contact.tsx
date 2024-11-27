@@ -5,7 +5,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Contact = () => {
   return (
-    <section id="contact" className="w-full h-80 p-10 flex flex-col items-center">
+    <section id="contact" className="w-full h-96 p-10 mt-24 flex flex-col items-center">
       <h2 className="text-4xl font-bold mb-6">Contact Me</h2>
       <div className="max-w-4xl text-center">
         <p className="mb-4 text-lg">
