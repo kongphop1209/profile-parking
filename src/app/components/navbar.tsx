@@ -18,7 +18,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    // Check if the code is running on the client side
+    // Ensure the code only runs in the browser
     if (typeof window !== "undefined") {
       // Handle scroll events to determine the active section
       const handleScroll = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, []); // The empty dependency array ensures this runs once after the component mounts
+  }, []); // The empty dependency array ensures this runs only once after the component mounts
 
   // Scroll to top functionality
   const scrollToTop = () => {
