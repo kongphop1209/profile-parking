@@ -111,7 +111,7 @@ const Navbar = () => {
               isMobileMenuOpen
                 ? "flex flex-col w-max gap-5 justify-center items-center p-8 transition-all duration-500 ease-in-out"
                 : "hidden transition-all duration-500 ease-in-out"
-            } lg:flex lg:flex-row border rounded-lg lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 gap-5`}
+            } lg:flex lg:flex-row border rounded-lg lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 space-x-8`}
             style={{
               top: isMobileMenuOpen ? "48px" : "auto",
             }}
@@ -130,8 +130,8 @@ const Navbar = () => {
                            section === 'contact' ? 100 : 0)}
                   className={`cursor-pointer transition  ${
                     activeSection === section 
-                      ? 'text-blue-500 font-bold' 
-                      : 'hover:text-gray-400'
+                      ? 'text-white font-bold p-2.5 border rounded-lg' 
+                      : 'hover:text-gray-400 p-2.5'
                   }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -143,7 +143,7 @@ const Navbar = () => {
       </nav>
       <button
         onClick={scrollToTop}
-        className="fixed right-10 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
+        className="fixed flex items-center justify-center right-12 pt-0 px-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
         style={{
           bottom: `${Math.max(10, 100 - buttonPosition)}px`,
           opacity: scrollPosition > 200 ? 1 : 0,
