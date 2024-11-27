@@ -10,7 +10,7 @@ import Footer from "@/app/components/footer";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col">
+    <main className="w-full flex flex-col">
       <Navbar />
 
       <div id="home">
@@ -40,7 +40,7 @@ export default function Home() {
       <div>
         <Footer />
       </div>
-    </div>
+    </main>
   );
 }
 
