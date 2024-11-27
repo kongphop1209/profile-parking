@@ -1,5 +1,9 @@
+"use client"
+
 import React from 'react';
-import Index from '@/app/pages/index'
+import dynamic from 'next/dynamic';
+
+const Index = dynamic(() => import('@/app/pages/index'), { ssr: false });
 
 export default function Home() {
   return (
