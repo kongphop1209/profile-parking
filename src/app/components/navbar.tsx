@@ -13,44 +13,49 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
+  // Ensure this code only runs on the client side
   useEffect(() => {
     setIsClient(true);
-
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-
-      // Set active section based on scroll position
-      const sections = ["home", "about", "skills", "projects", "experience", "contact"];
-      const windowHeight = window.innerHeight;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { top, bottom } = element.getBoundingClientRect();
-          if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
-  if (!isClient) return null;
+  useEffect(() => {
+    if (isClient) {
+      const handleScroll = () => {
+        setScrollPosition(window.scrollY);
+
+        // Set active section based on scroll position
+        const sections = ["home", "about", "skills", "projects", "experience", "contact"];
+        const windowHeight = window.innerHeight;
+
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const { top, bottom } = element.getBoundingClientRect();
+            if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
+              setActiveSection(section);
+              break;
+            }
+          }
+        }
+      };
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleResize);
+
+      handleResize();
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [isClient]); // Runs only after the component mounts
+
+  if (!isClient) return null; // Ensure that the component renders only after the client-side setup
 
   const scrollToTop = () => {
     window.scrollTo({
