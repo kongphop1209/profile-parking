@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
-import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
+import dynamic from "next/dynamic";
 
 const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
 
@@ -12,16 +12,15 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
   useEffect(() => {
-    // Ensure this runs only in the browser
     if (typeof window === "undefined") return;
-
+  
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-
-      // Determine active section based on scroll position
+  
       for (const section of SECTIONS) {
         const element = document.getElementById(section);
         if (element) {
@@ -32,24 +31,24 @@ const Navbar = () => {
           }
         }
       }
-
+  
       setScrollPosition(scrollY);
     };
-
+  
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-
+  
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-
+  
     handleResize();
-
+  
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // No dynamic dependency here
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
