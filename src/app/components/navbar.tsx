@@ -13,28 +13,26 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const sections = ["home", "about", "skills", "projects", "experience", "contact"];
-
   useEffect(() => {
     setIsClient(true);
 
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      setScrollPosition(window.scrollY);
+
+      // Set active section based on scroll position
+      const sections = ["home", "about", "skills", "projects", "experience", "contact"];
       const windowHeight = window.innerHeight;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
-
           if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
             setActiveSection(section);
             break;
           }
         }
       }
-
-      setScrollPosition(scrollY);
     };
 
     const handleResize = () => {
@@ -93,7 +91,7 @@ const Navbar = () => {
               : "flex flex-row gap-6 items-center"
           }`}
         >
-          {sections.map((section) => (
+          {["home", "about", "skills", "projects", "experience", "contact"].map((section) => (
             <li key={section}>
               <Link
                 to={section}
