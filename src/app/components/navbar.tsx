@@ -18,41 +18,44 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    // Handle scroll events to determine the active section
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
+    // Check if the code is running on the client side
+    if (typeof window !== "undefined") {
+      // Handle scroll events to determine the active section
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
 
-      SECTIONS.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const { top, bottom } = element.getBoundingClientRect();
-          if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
-            setActiveSection(section);
+        SECTIONS.forEach((section) => {
+          const element = document.getElementById(section);
+          if (element) {
+            const { top, bottom } = element.getBoundingClientRect();
+            if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
+              setActiveSection(section);
+            }
           }
-        }
-      });
+        });
 
-      setScrollPosition(scrollY);
-    };
+        setScrollPosition(scrollY);
+      };
 
-    // Handle window resizing to toggle mobile view
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
+      // Handle window resizing to toggle mobile view
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
 
-    // Add event listeners
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+      // Add event listeners
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleResize);
 
-    // Initial checks
-    handleResize();
+      // Initial checks
+      handleResize();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []); // The empty dependency array ensures this runs once after the component mounts
 
   // Scroll to top functionality
   const scrollToTop = () => {
