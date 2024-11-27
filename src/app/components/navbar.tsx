@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import dynamic from "next/dynamic";
 
 // Dynamically import Lottie to prevent SSR issues
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
@@ -12,15 +12,14 @@ import animationData from "@/app/assets/animation_002.json";
 const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
 
 const Navbar = () => {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Ensure consistent rendering between server and client
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
 
     const handleScroll = () => {
       if (typeof window !== 'undefined') {
@@ -57,34 +56,28 @@ const Navbar = () => {
     }
   }, []);
 
-  // Memoize calculations to prevent re-renders
-  const buttonPosition = useMemo(() => Math.min(scrollPosition / 2, 100), [scrollPosition]);
-
-  // Prevent hydration mismatches
-  if (!mounted) {
-    return (
-      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center shadow-md">
-        <div className="text-4xl flex items-center font-bold cursor-pointer">
-          <span className="text-white ml-2">PARKING</span>
-        </div>
-      </nav>
-    );
-  }
-
   const scrollToTop = () => {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
+  // Prevent hydration mismatch
+  if (!isMounted) return null;
+
+  const buttonPosition = Math.min(scrollPosition / 2, 100);
+
   return (
     <div>
+      {/* Navbar */}
       <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center shadow-md">
+        {/* Logo Section */}
         <div className="text-4xl flex items-center font-bold cursor-pointer">
           <Lottie animationData={animationData} loop={true} className="w-12 h-12" />
           <span className="text-white ml-2">PARKING</span>
         </div>
 
+        {/* Mobile Menu Button */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -108,6 +101,7 @@ const Navbar = () => {
           </button>
         )}
 
+        {/* Navigation Links */}
         <ul
           className={`${
             isMobile
@@ -138,6 +132,7 @@ const Navbar = () => {
         </ul>
       </nav>
 
+      {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
         className="fixed right-12 px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
