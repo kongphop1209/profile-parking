@@ -7,57 +7,52 @@ import animationData from "@/app/assets/animation_002.json";
 import MenuIcon from '@mui/icons-material/Menu'; 
 
 const Navbar = () => {
-  const [isClient, setIsClient] = useState(false); // to check if it's client-side
+  const [isClient, setIsClient] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Only run in the client
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsClient(true);
-    }
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
     if (isClient) {
       const handleScroll = () => {
         setScrollPosition(window.scrollY);
-
-        // Instead of using document.getElementById, rely on scroll position
         const sections = ["home", "about", "skills", "projects", "experience", "contact"];
         const windowHeight = window.innerHeight;
 
-        // Use scroll position to determine active section
-        sections.forEach((section) => {
+        for (const section of sections) {
           const element = document.getElementById(section);
           if (element) {
             const { top, bottom } = element.getBoundingClientRect();
             if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
               setActiveSection(section);
+              break;
             }
           }
-        });
+        }
       };
 
       const handleResize = () => {
-        setIsMobile(window.innerWidth < 1024); // Check if screen size is mobile
+        setIsMobile(window.innerWidth < 1024);
       };
 
       window.addEventListener("scroll", handleScroll);
       window.addEventListener("resize", handleResize);
 
-      handleResize(); // Initial resize check
+      handleResize();
 
       return () => {
         window.removeEventListener("scroll", handleScroll);
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, [isClient]);
+  }, [isClient]); 
 
-  if (!isClient) return null;
+  if (!isClient) return null; 
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -77,6 +72,7 @@ const Navbar = () => {
           <span className="text-white">PARKING</span>
         </div>
 
+        {/* Mobile menu toggle button using Material UI icon */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -87,6 +83,7 @@ const Navbar = () => {
           </button>
         )}
 
+        {/* Navbar menu */}
         <ul
           className={`${
             isMobile
@@ -130,6 +127,7 @@ const Navbar = () => {
         </ul>
       </nav>
 
+      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
