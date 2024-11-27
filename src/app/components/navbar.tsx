@@ -106,12 +106,12 @@ const Navbar = () => {
           {/* Navbar menu */}
           <ul
             className={`${
-              isMobile ? "absolute top-full right-10 w-full bg-black" : "flex "
+              isMobile ? "absolute top-full right-12 w-full bg-black" : "flex "
             } ${
               isMobileMenuOpen
-                ? "flex flex-col w-max gap-5 justify-center items-center p-8 transition-all duration-500 ease-in-out"
+                ? "flex flex-col w-max justify-center items-center p-8 transition-all duration-500 ease-in-out"
                 : "hidden transition-all duration-500 ease-in-out"
-            } lg:flex lg:flex-row border rounded-lg lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 space-x-8`}
+            } lg:flex lg:flex-row border rounded-lg lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 gap-5`}
             style={{
               top: isMobileMenuOpen ? "48px" : "auto",
             }}
