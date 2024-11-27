@@ -17,13 +17,13 @@ const Navbar = () => {
     };
 
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); // Check for mobile view
+      setIsMobile(window.innerWidth < 1024); 
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
-    handleResize(); // Check initial screen size
+    handleResize(); 
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -45,7 +45,10 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="fixed w-full top-11 z-50">
+      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex flex-row">
+        <div className=" text-4xl font-bold text cursor-pointer">
+          <span>PARKING</span>
+        </div>
         <div className="w-full flex justify-end items-center px-5 ">
           {/* Mobile menu toggle button */}
           {isMobile && (
@@ -75,10 +78,12 @@ const Navbar = () => {
             className={`${
               isMobile ? "absolute top-full right-10 w-full bg-black" : "flex "
             } ${
-              isMobileMenuOpen ? "flex flex-col w-max gap-5  justify-center items-center p-8 transition-all duration-500 ease-in-out " : "hidden transition-all duration-500 ease-in-out"
+              isMobileMenuOpen
+                ? "flex flex-col w-max gap-5  justify-center items-center p-8 transition-all duration-500 ease-in-out "
+                : "hidden transition-all duration-500 ease-in-out"
             } lg:flex lg:flex-row border rounded-lg lg:space-x-10 lg:bg-black lg:bg-opacity-95 lg:items-center lg:py-4 lg:px-10 `}
             style={{
-              top: isMobileMenuOpen ? '48px' : 'auto', 
+              top: isMobileMenuOpen ? "48px" : "auto",
             }}
           >
             <li>
