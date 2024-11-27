@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
-import animationData from "@/app/assets/animation_002.json";
+import { Link as ScrollLink } from "react-scroll"; // Smooth scrolling
 import dynamic from "next/dynamic";
 
+// Dynamically import Lottie to prevent SSR issues
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import animationData from "@/app/assets/animation_002.json";
+
+// Section IDs to navigate
 const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
 
 const Navbar = () => {
@@ -12,58 +16,62 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-  
+    // Handle scroll events to determine the active section
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-  
-      for (const section of SECTIONS) {
+
+      SECTIONS.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
           if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
             setActiveSection(section);
-            break;
           }
         }
-      }
-  
+      });
+
       setScrollPosition(scrollY);
     };
-  
+
+    // Handle window resizing to toggle mobile view
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-  
+
+    // Add event listeners
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-  
+
+    // Initial checks
     handleResize();
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  // Scroll to top functionality
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const buttonPosition = Math.min(scrollPosition / 2, 100);
 
   return (
     <div>
-      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center">
+      {/* Navbar */}
+      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center shadow-md">
+        {/* Logo Section */}
         <div className="text-4xl flex items-center font-bold cursor-pointer">
-          <Lottie animationData={animationData} loop={true} className="w-16 h-16" />
-          <span className="text-white">PARKING</span>
+          <Lottie animationData={animationData} loop={true} className="w-12 h-12" />
+          <span className="text-white ml-2">PARKING</span>
         </div>
 
+        {/* Mobile Menu Button */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -87,6 +95,7 @@ const Navbar = () => {
           </button>
         )}
 
+        {/* Navigation Links */}
         <ul
           className={`${
             isMobile
@@ -98,11 +107,11 @@ const Navbar = () => {
         >
           {SECTIONS.map((section) => (
             <li key={section}>
-              <Link
+              <ScrollLink
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-100}
+                offset={-80} // Offset to adjust for the fixed navbar
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
@@ -111,15 +120,16 @@ const Navbar = () => {
                 onClick={() => isMobile && setIsMobileMenuOpen(false)}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
-              </Link>
+              </ScrollLink>
             </li>
           ))}
         </ul>
       </nav>
 
+      {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
+        className="fixed right-12 px-4 py-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
         style={{
           bottom: `${Math.max(10, 100 - buttonPosition)}px`,
           opacity: scrollPosition > 200 ? 1 : 0,
