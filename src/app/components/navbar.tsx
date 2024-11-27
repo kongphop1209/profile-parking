@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
-import MenuIcon from '@mui/icons-material/Menu'; // Import the MUI icon
+import MenuIcon from '@mui/icons-material/Menu'; 
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
@@ -22,13 +22,11 @@ const Navbar = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Determine active section based on scroll position
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
 
-          // Check if section is in the middle 40% of the viewport
           if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
             setActiveSection(section);
             break;
