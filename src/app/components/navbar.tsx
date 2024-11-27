@@ -15,6 +15,8 @@ const Navbar = () => {
   const sections = ["home", "about", "skills", "projects", "experience", "contact"];
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // Ensure DOM is accessible only on the client
+
     setIsClient(true);
 
     const handleScroll = () => {
@@ -22,7 +24,7 @@ const Navbar = () => {
       const windowHeight = window.innerHeight;
 
       // Determine active section based on scroll position
-      for (const section of sections) { // Changed let to const
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
@@ -51,7 +53,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, [sections]); // Added 'sections' to dependency array
+  }, []); // Removed 'sections' from the dependency array
 
   if (!isClient) return null;
 
@@ -113,22 +115,7 @@ const Navbar = () => {
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={
-                  -(window.innerHeight / 2) +
-                  (section === "home"
-                    ? 60
-                    : section === "about"
-                    ? 300
-                    : section === "skills"
-                    ? 200
-                    : section === "projects"
-                    ? 150
-                    : section === "experience"
-                    ? 150
-                    : section === "contact"
-                    ? 100
-                    : 0)
-                }
+                offset={-100} // Generalized offset for simplicity
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
