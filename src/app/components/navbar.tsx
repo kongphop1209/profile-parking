@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Link as ScrollLink } from "react-scroll"; // Smooth scrolling
+import { Link as ScrollLink } from "react-scroll";
 import dynamic from "next/dynamic";
 
 // Dynamically import Lottie to prevent SSR issues
@@ -12,12 +12,17 @@ import animationData from "@/app/assets/animation_002.json";
 const SECTIONS = ["home", "about", "skills", "projects", "experience", "contact"];
 
 const Navbar = () => {
+  // Use state to manage client-side only rendering
+  const [isClient, setIsClient] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
+    // Mark as client-side
+    setIsClient(true);
+
     // Ensure the code only runs in the browser
     if (typeof window !== "undefined") {
       // Handle scroll events to determine the active section
@@ -59,8 +64,21 @@ const Navbar = () => {
 
   // Scroll to top functionality
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
+
+  // Prevent rendering of dynamic content on server
+  if (!isClient) {
+    return (
+      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center shadow-md">
+        <div className="text-4xl flex items-center font-bold cursor-pointer">
+          <span className="text-white ml-2">PARKING</span>
+        </div>
+      </nav>
+    );
+  }
 
   const buttonPosition = Math.min(scrollPosition / 2, 100);
 
