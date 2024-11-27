@@ -115,7 +115,7 @@ const Navbar = () => {
                 duration={500}
                 offset={-(window.innerHeight / 2) + 
                          (section === "home"
-                           ? 60
+                           ? 70
                            : section === "about"
                            ? 300
                            : section === "skills"
