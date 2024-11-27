@@ -22,7 +22,7 @@ const Navbar = () => {
       const windowHeight = window.innerHeight;
 
       // Determine active section based on scroll position
-      for (let section of sections) {
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
