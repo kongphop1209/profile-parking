@@ -22,7 +22,7 @@ const Navbar = () => {
       const windowHeight = window.innerHeight;
 
       // Determine active section based on scroll position
-      for (const section of sections) {
+      for (const section of sections) { // Changed let to const
         const element = document.getElementById(section);
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
@@ -51,7 +51,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [sections]); // Added 'sections' to dependency array
 
   if (!isClient) return null;
 
@@ -113,20 +113,22 @@ const Navbar = () => {
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-(window.innerHeight / 2) + 
-                         (section === "home"
-                           ? 70
-                           : section === "about"
-                           ? 300
-                           : section === "skills"
-                           ? 200
-                           : section === "projects"
-                           ? 150
-                           : section === "experience"
-                           ? 150
-                           : section === "contact"
-                           ? 100
-                           : 0)}
+                offset={
+                  -(window.innerHeight / 2) +
+                  (section === "home"
+                    ? 60
+                    : section === "about"
+                    ? 300
+                    : section === "skills"
+                    ? 200
+                    : section === "projects"
+                    ? 150
+                    : section === "experience"
+                    ? 150
+                    : section === "contact"
+                    ? 100
+                    : 0)
+                }
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
