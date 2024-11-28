@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
@@ -101,7 +101,22 @@ const Navbar = () => {
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-(window.innerHeight / 2)}
+                offset={
+                  -(window.innerHeight / 2) +
+                  (section === "home"
+                    ? 70
+                    : section === "about"
+                    ? 300
+                    : section === "skills"
+                    ? 200
+                    : section === "projects"
+                    ? 150
+                    : section === "experience"
+                    ? 150
+                    : section === "contact"
+                    ? 300
+                    : 0)
+                }
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
