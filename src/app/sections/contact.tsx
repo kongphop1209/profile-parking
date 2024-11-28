@@ -5,40 +5,53 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Contact = () => {
   return (
-    <section id="contact" className="w-full h-96 p-10 mt-24 flex flex-col items-center">
-      <h2 className="text-4xl font-bold mb-6">Contact Me</h2>
-      <div className="max-w-4xl text-center">
-        <p className="mb-4 text-lg">
-          Feel free to reach out to me for any inquiries, collaborations, or just to say hi!
+    <section
+      id="contact"
+      className="w-full py-16 bg-gray-900 text-white flex flex-col items-center"
+    >
+      <h2 className="text-4xl font-bold mb-8">Contact Me</h2>
+      <div className="w-5/6 text-center">
+        <p className="mb-6 text-lg text-gray-300">
+          I'm always open to opportunities, collaborations, or even just a friendly chat. 
+          Feel free to get in touch!
         </p>
-        <div className="flex justify-center gap-10 mb-6">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-8">
+          {/* Email */}
           <a
             href="mailto:6531503008@lamduan.mfu.ac.th"
-            className="flex items-center text-blue-500 hover:underline"
+            className="flex items-center gap-4 text-blue-400 hover:text-blue-500 transition duration-200"
           >
-            <EmailIcon fontSize="large" className="mr-2" />
-            Email Me
+            <div className="p-4 rounded-full bg-gray-800 hover:bg-gray-700">
+              <EmailIcon fontSize="large" />
+            </div>
+            <span className="text-lg font-semibold">Email Me</span>
           </a>
+          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/kongphop-saenphai-34a557288/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-blue-500 hover:underline"
+            className="flex items-center gap-4 text-blue-400 hover:text-blue-500 transition duration-200"
           >
-            <LinkedInIcon fontSize="large" className="mr-2" />
-            LinkedIn
+            <div className="p-4 rounded-full bg-gray-800 hover:bg-gray-700">
+              <LinkedInIcon fontSize="large" />
+            </div>
+            <span className="text-lg font-semibold">LinkedIn</span>
           </a>
+          {/* GitHub */}
           <a
             href="https://github.com/kongphop1209"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-blue-500 hover:underline"
+            className="flex items-center gap-4 text-blue-400 hover:text-blue-500 transition duration-200"
           >
-            <GitHubIcon fontSize="large" className="mr-2" />
-            GitHub
+            <div className="p-4 rounded-full bg-gray-800 hover:bg-gray-700">
+              <GitHubIcon fontSize="large" />
+            </div>
+            <span className="text-lg font-semibold">GitHub</span>
           </a>
         </div>
-        <p className="text-sm text-gray-500">Let's connect!</p>
+        <p className="text-sm text-gray-500">Looking forward to hearing from you!</p>
       </div>
     </section>
   );

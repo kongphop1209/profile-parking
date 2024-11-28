@@ -40,7 +40,6 @@ export default function Home() {
       <div id="contact">
         <Contact />
       </div>
-
       <div>
         <Footer />
       </div>

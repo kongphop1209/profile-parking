@@ -2,61 +2,53 @@ import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Experience = () => {
+  const experiences = [
+    {
+      title: "Blitz - Flight Reservation App",
+      description:
+        "A Flutter-based mobile application for booking and managing flight reservations. It provided a user-friendly interface and seamless booking experience. I worked on implementing core features such as seat selection and payment integration.",
+      githubLink: "https://github.com/kongphop1209/App_TravelBlitz",
+    },
+    {
+      title: "Sport Complex Web App",
+      description:
+        "A web application for managing a sport complex's schedules, bookings, and events. My role focused on frontend development, ensuring responsive design and interactive features using modern web technologies.",
+      githubLink: "https://github.com/6531503042/Sport-Complex",
+    },
+    {
+      title: "Weather Forecast Web App",
+      description:
+        "A web application providing real-time weather forecasts and updates. I developed the interface and integrated APIs to display weather data dynamically with interactive visuals.",
+      githubLink:
+        "https://github.com/maefahluang-uni/99-project-forecastweather-system-group-14",
+    },
+  ];
+
   return (
-    <section id="experience" className="w-full p-10 flex flex-col items-center">
-      <h2 className="text-4xl font-bold mb-6">Experience</h2>
-      <div className="max-w-4xl flex flex-col gap-6">
-        {/* Blitz Project */}
-        <div className="border rounded-lg shadow-md p-6">
-          <h3 className="text-2xl font-semibold">Blitz - Flight Reservation App</h3>
-          <p className="text-lg mt-2">
-            A Flutter-based mobile application for booking and managing flight reservations.
-            It provided a user-friendly interface and seamless booking experience. I worked
-            on implementing core features such as seat selection and payment integration.
-          </p>
-          <a
-            href="https://github.com/kongphop1209/App_TravelBlitz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline mt-2 inline-flex items-center"
+    <section
+      id="experience"
+      className="w-full py-16 bg-gray-900 text-white flex flex-col items-center"
+    >
+      <h2 className="text-4xl font-bold mb-12">Experience</h2>
+      <div className="w-3/4 flex flex-col gap-8">
+        {experiences.map((exp, index) => (
+          <div
+            key={index}
+            className="border border-gray-700 bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-2xl hover:scale-105 transition transform duration-300"
           >
-            <GitHubIcon className="mr-2" /> View on GitHub
-          </a>
-        </div>
-        {/* Sport Complex App */}
-        <div className="border rounded-lg shadow-md p-6">
-          <h3 className="text-2xl font-semibold">Sport Complex Web App</h3>
-          <p className="text-lg mt-2">
-            A web application for managing a sport complex's schedules, bookings, and events.
-            My role focused on frontend development, ensuring responsive design and
-            interactive features using modern web technologies.
-          </p>
-          <a
-            href="https://github.com/6531503042/Sport-Complex"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline mt-2 inline-flex items-center"
-          >
-            <GitHubIcon className="mr-2" /> View on GitHub
-          </a>
-        </div>
-        {/* Weather Forecast App */}
-        <div className="border rounded-lg shadow-md p-6">
-          <h3 className="text-2xl font-semibold">Weather Forecast Web App</h3>
-          <p className="text-lg mt-2">
-            A web application providing real-time weather forecasts and updates.
-            I developed the interface and integrated APIs to display weather data
-            dynamically with interactive visuals.
-          </p>
-          <a
-            href="https://github.com/maefahluang-uni/99-project-forecastweather-system-group-14"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline mt-2 inline-flex items-center"
-          >
-            <GitHubIcon className="mr-2" /> View on GitHub
-          </a>
-        </div>
+            <h3 className="text-2xl font-semibold mb-4">{exp.title}</h3>
+            <p className="text-lg text-gray-300">{exp.description}</p>
+            <a
+              href={exp.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-500 flex items-center gap-2 mt-4 transition-colors duration-200"
+            >
+              <GitHubIcon fontSize="small" />
+              View on GitHub
+            </a>
+          </div>
+        ))}
       </div>
     </section>
   );

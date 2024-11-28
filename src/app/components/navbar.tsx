@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import Lottie from "lottie-react";
 import animationData from "@/app/assets/animation_002.json";
-import MenuIcon from '@mui/icons-material/Menu'; 
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
@@ -50,9 +50,9 @@ const Navbar = () => {
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, [isClient]); 
+  }, [isClient]);
 
-  if (!isClient) return null; 
+  if (!isClient) return null;
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -66,13 +66,16 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="fixed w-full top-0 z-50 p-6 bg-black flex justify-between items-center">
+      <nav
+        className={`fixed w-full top-0 z-50 p-5 flex justify-between items-center transition-colors duration-300 ${
+          scrollPosition > 0 ? "bg-black" : "bg-transparent"
+        }`}
+      >
         <div className="text-4xl flex items-center font-bold cursor-pointer">
           <Lottie animationData={animationData} loop={true} className="w-16 h-16" />
           <span className="text-white">PARKING</span>
         </div>
 
-        {/* Mobile menu toggle button using Material UI icon */}
         {isMobile && (
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -83,14 +86,13 @@ const Navbar = () => {
           </button>
         )}
 
-        {/* Navbar menu */}
         <ul
           className={`${
             isMobile
-              ? `absolute top-16 right-4 bg-black text-white w-48 flex flex-col gap-4 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+              ? `absolute top-16 right-4 bg-black text-white w-48 flex flex-col gap-4 p-4 rounded-lg shadow-lg transition-all duration-500 ${
                   isMobileMenuOpen ? "block" : "hidden"
                 }`
-              : "flex flex-row gap-6 items-center"
+              : "flex flex-row space-x-8 me-4 items-center"
           }`}
         >
           {["home", "about", "skills", "projects", "experience", "contact"].map((section) => (
@@ -99,20 +101,7 @@ const Navbar = () => {
                 to={section}
                 smooth={true}
                 duration={500}
-                offset={-(window.innerHeight / 2) + 
-                         (section === "home"
-                           ? 70
-                           : section === "about"
-                           ? 300
-                           : section === "skills"
-                           ? 200
-                           : section === "projects"
-                           ? 150
-                           : section === "experience"
-                           ? 150
-                           : section === "contact"
-                           ? 100
-                           : 0)}
+                offset={-(window.innerHeight / 2)}
                 className={`cursor-pointer transition ${
                   activeSection === section
                     ? "text-white font-bold border-b-2 border-blue-500"
@@ -127,7 +116,6 @@ const Navbar = () => {
         </ul>
       </nav>
 
-      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className="fixed lg:text-2xl text-md right-12 px-3 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-opacity duration-500"
