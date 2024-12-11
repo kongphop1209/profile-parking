@@ -1,6 +1,10 @@
 import React from "react";
 
 const Footer = () => {
+  // Get the last updated date from the environment variable or use the current date as a fallback
+  const lastUpdated =
+    process.env.NEXT_PUBLIC_LAST_UPDATED || new Date().toISOString();
+
   return (
     <footer className="bg-gray-800 text-gray-300 py-8">
       <div className="container mx-auto px-4">
@@ -39,7 +43,13 @@ const Footer = () => {
         {/* Decorative Divider */}
         <div className="border-t border-gray-700 mt-6 pt-4 text-center text-sm text-gray-500">
           <p>
-            Designed with ❤️ by <span className="text-blue-400 font-medium">Kongphop</span>
+            Designed with ❤️ by <span className="text-blue-400 font-medium uppercase">kongphop ii</span>
+          </p>
+          <p className="mt-2">
+            Last Updated:{" "}
+            <span className="text-blue-400 font-medium">
+              {new Date(lastUpdated).toLocaleString()}
+            </span>
           </p>
         </div>
       </div>
