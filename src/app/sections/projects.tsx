@@ -27,7 +27,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="w-full py-16 flex flex-col items-center bg-gray-900 text-white">
+    <section id="projects" className="w-full py-16 flex flex-col items-center text-white">
       <h2 className="text-4xl font-bold mb-12">Projects</h2>
       <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (

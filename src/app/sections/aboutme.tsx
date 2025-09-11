@@ -7,7 +7,8 @@ import animationData from '@/app/assets/animation_001.json';
 
 const AboutMe = () => {
   return (
-    <section id="about" className="w-full py-16 px-4 bg-gray-900">
+    <section id="about" className="w-full py-16 px-4">
+      
       <div className=" mx-auto flex flex-col md:flex-row items-center justify-around gap-12">
         {/* Lottie Animation */}
         <div className="w-full md:w-1/3 flex justify-center">

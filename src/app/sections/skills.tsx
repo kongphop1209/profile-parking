@@ -102,7 +102,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="w-full py-16 flex justify-center bg-gray-900 text-white">
+    <section id="skills" className="w-full py-16 flex justify-center text-white">
       <div className="px-4 flex flex-col gap-12">
         <h2 className="text-4xl font-bold text-center">Skills</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-12">

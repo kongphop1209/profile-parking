@@ -27,7 +27,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="w-full py-16 bg-gray-900 text-white flex flex-col items-center"
+      className="w-full py-16 text-white flex flex-col items-center"
     >
       <h2 className="text-4xl font-bold mb-12">Experience</h2>
       <div className="w-3/4 flex flex-col gap-8">
