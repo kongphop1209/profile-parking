@@ -1,8 +1,6 @@
 "use client"
 
 import React from "react";
-import Image from 'next/image';
-import MyselfImage from "@/app/assets/myself.jpg";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";  
 
