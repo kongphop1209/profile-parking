@@ -48,23 +48,7 @@ const Introduce = () => {
           </Link>
         </div> 
       </motion.div> 
-      <motion.div 
-        initial={{ opacity: 0, x: 100 }} 
-        animate={{ opacity: 1, x: 0 }} 
-        transition={{ duration: 0.8 }} 
-        className="flex justify-center items-center w-full md:w-1/2"
-      > 
-        <div className="relative"> 
-          <div className="absolute -inset-2 bg-blue-400/50 rounded-full blur-xl animate-pulse"></div> 
-          <Image 
-            src={MyselfImage} 
-            alt="Kongphop's picture" 
-            width={350} 
-            height={350} 
-            className="relative z-10 rounded-full object-cover w-80 h-80 md:w-96 md:h-96 shadow-2xl border-4 border-blue-500/50" 
-          /> 
-        </div> 
-      </motion.div> 
+      
     </section> 
   ); 
 }; 
