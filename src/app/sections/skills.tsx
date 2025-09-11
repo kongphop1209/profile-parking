@@ -13,6 +13,9 @@ import {
   FaSync,
   FaPlug,
   FaTools,
+  FaJava,
+  FaPython,
+  FaDocker,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -23,6 +26,13 @@ import {
   SiFigma,
   SiVisualstudiocode,
   SiPostman,
+  SiFirebase,
+  SiPostgresql,
+  SiGo,
+  SiFlutter,
+  SiDart,
+  SiKubernetes,
+  SiApachekafka,
 } from "react-icons/si";
 
 const Skills = () => {
@@ -35,6 +45,8 @@ const Skills = () => {
         { icon: <SiNextdotjs className="text-white" />, name: "Next.js" },
         { icon: <SiTypescript className="text-blue-600" />, name: "TypeScript" },
         { icon: <SiTailwindcss className="text-teal-500" />, name: "Tailwind CSS" },
+        { icon: <SiFlutter className="text-sky-400" />, name: "Flutter" },
+        { icon: <SiDart className="text-blue-400" />, name: "Dart" },
         { icon: <FaHtml5 className="text-orange-500" />, name: "HTML & CSS" },
       ],
     },
@@ -44,9 +56,25 @@ const Skills = () => {
       skills: [
         { icon: <FaNodeJs className="text-green-500" />, name: "Node.js" },
         { icon: <SiExpress className="text-green-600" />, name: "Express.js" },
+        { icon: <SiGo className="text-cyan-500" />, name: "Go (Echo, gRPC)" },
+        { icon: <FaJava className="text-red-600" />, name: "Java (Spring WebFlux)" },
+        { icon: <FaPython className="text-yellow-400" />, name: "Python (FastAPI, NLP)" },
         { icon: <SiMongodb className="text-green-600" />, name: "MongoDB" },
+        { icon: <SiPostgresql className="text-blue-500" />, name: "PostgreSQL" },
         { icon: <FaDatabase />, name: "SQL" },
         { icon: <FaPlug />, name: "API Integration" },
+      ],
+    },
+    {
+      title: "DevOps & Cloud",
+      icon: <FaDocker className="text-blue-400" />,
+      skills: [
+        { icon: <FaDocker className="text-blue-400" />, name: "Docker" },
+        { icon: <SiKubernetes className="text-blue-500" />, name: "Kubernetes" },
+        { icon: <SiApachekafka className="text-orange-600" />, name: "Apache Kafka" },
+        { icon: <SiFirebase className="text-yellow-400" />, name: "Firebase (Auth, Firestore)" },
+        { icon: <FaLinux className="text-blue-300" />, name: "Linux" },
+        { icon: <FaTools className="text-gray-400" />, name: "System Design" },
       ],
     },
     {
@@ -57,7 +85,7 @@ const Skills = () => {
         { icon: <SiFigma className="text-pink-500" />, name: "Figma" },
         { icon: <SiVisualstudiocode className="text-blue-600" />, name: "VS Code" },
         { icon: <SiPostman className="text-orange-500" />, name: "Postman" },
-        { icon: <FaLinux className="text-blue-300" />, name: "Linux" },
+        { icon: <FaLightbulb className="text-yellow-400" />, name: "NLP & AI Tools" },
       ],
     },
     {
