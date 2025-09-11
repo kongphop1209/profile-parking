@@ -68,7 +68,7 @@ const Introduce = () => {
 
         {/* Tech badges */}
         <ul className="mt-6 flex flex-wrap justify-center gap-2 text-xs text-blue-200/90">
-          {["TypeScript", "React", "Next.js", "Tailwind", "Framer Motion"].map(
+          {["TypeScript", "React", "Next.js", "Tailwind"].map(
             (t) => (
               <li
                 key={t}
