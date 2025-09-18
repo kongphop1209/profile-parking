@@ -45,20 +45,6 @@ const isNodeItem = (item: LogoItem): item is { node: React.ReactNode } => {
   return "node" in item;
 };
 
-const isImageItem = (
-  item: LogoItem
-): item is {
-  src: string;
-  alt?: string;
-  href?: string;
-  title?: string;
-  srcSet?: string;
-  sizes?: string;
-  width?: number;
-  height?: number;
-} => {
-  return "src" in item;
-};
 
 const cx = (...parts: Array<string | false | null | undefined>) =>
   parts.filter(Boolean).join(" ");
@@ -83,8 +69,6 @@ const LogoLoop = React.memo<LogoLoopProps>(
     pauseOnHover = true,
     fadeOut = false,
     fadeOutColor = "#fff",
-    scaleOnHover = false,
-    ariaLabel = "Partner logos",
     className,
     style,
   }) => {
@@ -92,9 +76,11 @@ const LogoLoop = React.memo<LogoLoopProps>(
     const trackRef = useRef<HTMLDivElement>(null);
     const seqRef = useRef<HTMLUListElement>(null);
 
-    const [copyCount, setCopyCount] = useState(ANIMATION_CONFIG.MIN_COPIES);
+    const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
+
     const [isHovered, setIsHovered] = useState(false);
     const [seqWidth, setSeqWidth] = useState(0);
+    
 
     const updateWidth = useCallback(() => {
       const container = containerRef.current;
@@ -158,14 +144,15 @@ const LogoLoop = React.memo<LogoLoopProps>(
       return () => cancelAnimationFrame(animationId);
     }, [seqWidth, speed, direction, isHovered, pauseOnHover]);
 
-    const cssVars: React.CSSProperties = useMemo(
-      () => ({
-        "--logoloop-gap": `${gap}px`,
-        "--logoloop-logoHeight": `${logoHeight}px`,
-        "--logoloop-fadeColor": fadeOutColor,
-      }),
-      [gap, logoHeight, fadeOutColor]
-    );
+    const cssVars: Record<string, string | number> = useMemo(
+  () => ({
+    "--logoloop-gap": `${gap}px`,
+    "--logoloop-logoHeight": `${logoHeight}px`,
+    ...(fadeOutColor && { "--logoloop-fadeColor": fadeOutColor }),
+  }),
+  [gap, logoHeight, fadeOutColor]
+);
+
 
     const renderItem = useCallback(
       (item: LogoItem, i: number) => {
