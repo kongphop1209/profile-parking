@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 export type PillNavItem = {
   label: string;
@@ -234,12 +235,14 @@ useEffect(() => {
             background: "var(--base, #000)",
           }}
         >
-          <img
-            src={logo}
-            alt={logoAlt}
-            ref={logoImgRef}
-            className="w-full h-full object-cover block"
-          />
+          <Image
+  src={logo}
+  alt={logoAlt}
+  ref={logoImgRef}
+  width={42} // or whatever size is appropriate
+  height={42}
+  className="w-full h-full object-cover block"
+/>
         </a>
 
         {/* Nav Items */}

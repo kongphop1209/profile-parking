@@ -108,10 +108,10 @@ const Projects = () => {
               <div className="w-1/3 px-2">
               <LogoLoop
                 logos={pro.logos}
-                speed={20}
+                speed={10}
                 direction="left"
                 logoHeight={32}
-                gap={64}
+                gap={32}
                 pauseOnHover
                 scaleOnHover
                 fadeOut
