@@ -12,13 +12,11 @@ const Navbar = () => {
       setScrollPosition(window.scrollY);
 
       const sections = ["home", "about", "skills", "projects", "contact"];
-      const windowHeight = window.innerHeight;
-
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
-          const { top, bottom } = el.getBoundingClientRect();
-          if (top <= windowHeight * 0.6 && bottom >= windowHeight * 0.4) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom > 80) {
             setActiveSection(section);
             break;
           }
@@ -33,7 +31,7 @@ const Navbar = () => {
   return (
     <div className="w-full flex justify-center pt-6 z-50 fixed top-0">
       <PillNav
-        logo="/react.png" 
+        logo="/react.png"
         logoAlt="Parking Logo"
         items={[
           { label: "Home", href: "home" },
@@ -42,7 +40,7 @@ const Navbar = () => {
           { label: "Projects", href: "projects" },
           { label: "Contact", href: "contact" },
         ]}
-        activeHref={activeSection} 
+        activeHref={activeSection}
         ease="power2.easeOut"
         baseColor="#1a1a1a"
         pillColor="#ffffff"
