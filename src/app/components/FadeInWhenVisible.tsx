@@ -5,8 +5,8 @@ import { useInView } from "react-intersection-observer";
 
 export default function FadeInWhenVisible({ children }: { children: React.ReactNode }) {
   const { ref, inView } = useInView({
-    triggerOnce: true, // เล่นแค่ครั้งแรก
-    threshold: 0.1,    // เห็นอย่างน้อย 10% ถึงจะเริ่ม
+    triggerOnce: true, 
+    threshold: 0.1,    
   });
 
   return (

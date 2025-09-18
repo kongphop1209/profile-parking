@@ -34,6 +34,7 @@ import {
   SiKubernetes,
   SiApachekafka,
 } from "react-icons/si";
+import AnimatedContent from "@/components/AnimatedContent";
 
 const Skills = () => {
   const skillsData = [
@@ -103,6 +104,19 @@ const Skills = () => {
 
   return (
     <section id="skills" className="w-full py-16 flex justify-center text-white">
+      <AnimatedContent
+        distance={150}
+        direction="vertical"
+        reverse={false}
+        duration={1.2}
+        ease="power3.out"
+        initialOpacity={0.2}
+        animateOpacity
+        scale={1.05}
+        threshold={0.2}
+        delay={0.2}
+      >
+
       <div className="px-4 flex flex-col gap-12">
         <h2 className="text-4xl font-bold text-center">Skills</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-12">
@@ -128,6 +142,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
+      </AnimatedContent>
     </section>
   );
 };

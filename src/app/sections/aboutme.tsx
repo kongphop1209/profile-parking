@@ -4,11 +4,24 @@ import React from 'react';
 import { Code, User, Target } from 'lucide-react';
 import Lottie from 'lottie-react';
 import animationData from '@/app/assets/animation_001.json'; 
+import AnimatedContent from "@/components/AnimatedContent";
 
 const AboutMe = () => {
   return (
     <section id="about" className="w-full py-16 px-4">
-      
+      <AnimatedContent
+        distance={150}
+        direction="vertical"
+        reverse={false}
+        duration={1.2}
+        ease="power3.out"
+        initialOpacity={0.2}
+        animateOpacity
+        scale={1.05}
+        threshold={0.2}
+        delay={0.2}
+      >
+
       <div className=" mx-auto flex flex-col md:flex-row items-center justify-around gap-12">
         {/* Lottie Animation */}
         <div className="w-full md:w-1/3 flex justify-center">
@@ -50,6 +63,7 @@ const AboutMe = () => {
           </p>
         </div>
       </div>
+      </AnimatedContent>
     </section>
   );
 };
