@@ -124,8 +124,8 @@ const Skills = () => {
       >
         <div className="px-6 flex flex-col gap-16 items-center w-full">
           {/* Section Title */}
-          <h2 className="text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent text-center">
-            Skills
+          <h2 className="text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-center">
+            <span className="text-transparent">Skills</span>{" "}💻
           </h2>
 
           {/* Skills Grid */}

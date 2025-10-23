@@ -113,8 +113,8 @@ const Projects = () => {
         scale={1.05}
         threshold={0.3}
       >
-        <h2 className="text-5xl font-extrabold mb-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-transparent text-center">
-          Projects
+        <h2 className="text-5xl font-extrabold mb-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-center">
+          <span className="text-transparent">Projects</span>{" "}🚀
         </h2>
       </AnimatedContent>
 

@@ -13,7 +13,7 @@ const Navbar = dynamic(() => import('@/app/components/navbar'), { ssr: false });
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col">
+    <div className="relative min-h-screen w-full overflow-hidden bg-[#020617] before:absolute before:inset-0 before:bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] before:bg-[size:40px_40px]">
       <Navbar />
 
       <div id="home">

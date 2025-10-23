@@ -9,12 +9,13 @@ const Contact = () => {
       id="contact"
       className="w-full py-16 my-20 text-white flex flex-col items-center"
     >
-      
-      <h2 className="text-4xl font-bold mb-8">Contact Me</h2>
+      <h2 className="text-5xl font-extrabold mb-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-center">
+        <span className="text-transparent">Contact Me</span>{" "}✉️
+        </h2>
       <div className="w-5/6 text-center">
         <p className="mb-6 text-lg text-gray-300">
-          I'm always open to opportunities, collaborations, or even just a friendly chat. 
-          Feel free to get in touch!
+          I'm always open to opportunities, collaborations, or even just a
+          friendly chat. Feel free to get in touch!
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-8">
           {/* Email */}
@@ -52,7 +53,9 @@ const Contact = () => {
             <span className="text-lg font-semibold">GitHub</span>
           </a>
         </div>
-        <p className="text-sm text-gray-500">Looking forward to hearing from you!</p>
+        <p className="text-sm text-gray-500">
+          Looking forward to hearing from you!
+        </p>
       </div>
     </section>
   );
