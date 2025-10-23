@@ -23,12 +23,18 @@ const Projects = () => {
       description:
         "A full-stack confidential feedback management system for organizations. Built with Next.js (Frontend), Java Spring WebFlux & FastAPI (Backend), PostgreSQL & MongoDB, and Docker. Provides multi-role dashboards, NLP sentiment analysis, and real-time data visualization.",
       private: true,
-      images: ["/projects/admin_homepage.png", "/projects/admin_dashboard.png"],
+      images: ["/ata_1.png", "/ata_2.png", "/ata_3.png"],
       logos: [
         { node: <SiNextdotjs className="text-white" />, title: "Next.js" },
         { node: <FaJava className="text-[#E76F00]" />, title: "Java" },
-        { node: <SiSpringboot className="text-[#6DB33F]" />, title: "Spring Boot" },
-        { node: <SiPostgresql className="text-[#336791]" />, title: "PostgreSQL" },
+        {
+          node: <SiSpringboot className="text-[#6DB33F]" />,
+          title: "Spring Boot",
+        },
+        {
+          node: <SiPostgresql className="text-[#336791]" />,
+          title: "PostgreSQL",
+        },
         { node: <SiDocker className="text-[#0db7ed]" />, title: "Docker" },
       ],
     },
@@ -37,7 +43,7 @@ const Projects = () => {
       description:
         "A Flutter + Firebase-based mobile health-tracking application for teenagers. It provides secure authentication, personalized dashboards, and health data management using Provider and Firebase Cloud.",
       githubLink: "https://github.com/kongphop1209/Health-teen-app",
-      image: "/projects/health-teen.jpg",
+      images: ["/health_1.jpg"],
       logos: [
         { node: <SiFlutter className="text-[#02569B]" />, title: "Flutter" },
         { node: <SiFirebase className="text-[#FFCA28]" />, title: "Firebase" },
@@ -48,7 +54,7 @@ const Projects = () => {
       description:
         "A Flutter-based mobile application for booking and managing flight reservations. Implemented seat selection, payment flow, and booking logic.",
       githubLink: "https://github.com/kongphop1209/App_TravelBlitz",
-      images: ["/travel_1.png","/travel_2.png","/travel_3.png",],
+      images: ["/travel_1.png", "/travel_2.png", "/travel_3.png"],
       logos: [
         { node: <SiFlutter className="text-[#02569B]" />, title: "Flutter" },
         { node: <SiFirebase className="text-[#FFCA28]" />, title: "Firebase" },
@@ -62,8 +68,14 @@ const Projects = () => {
       images: ["/sport_complex_2.png", "/sport_complex_1.png"],
       logos: [
         { node: <SiNextdotjs className="text-white" />, title: "Next.js" },
-        { node: <SiTypescript className="text-[#3178C6]" />, title: "TypeScript" },
-        { node: <SiTailwindcss className="text-[#38BDF8]" />, title: "Tailwind CSS" },
+        {
+          node: <SiTypescript className="text-[#3178C6]" />,
+          title: "TypeScript",
+        },
+        {
+          node: <SiTailwindcss className="text-[#38BDF8]" />,
+          title: "Tailwind CSS",
+        },
       ],
     },
   ];
@@ -83,10 +95,14 @@ const Projects = () => {
 
   const closeModal = () => setModalImages([]);
   const nextImage = () => setModalIndex((i) => (i + 1) % modalImages.length);
-  const prevImage = () => setModalIndex((i) => (i - 1 + modalImages.length) % modalImages.length);
+  const prevImage = () =>
+    setModalIndex((i) => (i - 1 + modalImages.length) % modalImages.length);
 
   return (
-    <section id="projects" className="w-full py-20 text-white flex flex-col items-center">
+    <section
+      id="projects"
+      className="w-full py-20 text-white flex flex-col items-center"
+    >
       <AnimatedContent
         distance={150}
         direction="vertical"
@@ -105,11 +121,10 @@ const Projects = () => {
       {/* ✅ fixed height container grid */}
       <div className="w-11/12 md:w-5/6 grid grid-cols-1 lg:grid-cols-2 gap-10 auto-rows-[1fr]">
         {projects.map((pro, index) => {
-          const imgs = Array.isArray(pro.images)
-            ? pro.images.slice(0, 2)
-            : pro.image
-            ? [pro.image]
-            : [];
+          const imgs =
+            pro.images && pro.images.length > 0
+              ? pro.images.slice(0, 2)
+              : ["/projects/placeholder-generic.jpg"];
 
           return (
             <AnimatedContent
@@ -126,7 +141,11 @@ const Projects = () => {
               <div className="flex flex-col h-full border border-gray-700 bg-gray-800/60 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden">
                 {/* images */}
                 {imgs.length > 0 && (
-                  <div className={`grid ${imgs.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-1 h-56`}>
+                  <div
+                    className={`grid ${
+                      imgs.length > 1 ? "grid-cols-2" : "grid-cols-1"
+                    } gap-1 h-56`}
+                  >
                     {imgs.map((img, i) => (
                       <div
                         key={i}
@@ -152,8 +171,12 @@ const Projects = () => {
                 {/* text section */}
                 <div className="flex flex-col justify-between flex-1 p-8">
                   <div className="flex-1">
-                    <h3 className="text-2xl font-semibold mb-4 text-white">{pro.title}</h3>
-                    <p className="text-gray-300 text-base leading-relaxed mb-6">{pro.description}</p>
+                    <h3 className="text-2xl font-semibold mb-4 text-white">
+                      {pro.title}
+                    </h3>
+                    <p className="text-gray-300 text-base leading-relaxed mb-6">
+                      {pro.description}
+                    </p>
                   </div>
 
                   {/* icons */}
