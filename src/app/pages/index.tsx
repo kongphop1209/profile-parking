@@ -35,7 +35,7 @@ export default function Home() {
       <div id="contact">
         <Contact />
       </div>
-      <div>
+      <div className=''>
         <Footer />
       </div>
     </div>

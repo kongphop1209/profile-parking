@@ -158,7 +158,7 @@ const Skills = () => {
 
                     {/* Skill List */}
                     <ul
-                      className={`space-y-3 flex-1 overflow-hidden transition-all duration-500 ${
+                      className={`space-y-3 flex flex-col flex-1 overflow-hidden transition-all duration-500 ${
                         expanded ? "max-h-[1000px]" : "max-h-[260px]"
                       }`}
                     >
