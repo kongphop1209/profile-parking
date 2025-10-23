@@ -52,7 +52,7 @@ const Introduce = () => {
 
         {/* Description */}
         <p className="text-gray-300 leading-relaxed text-base md:text-lg w-full">
-          Passionate about crafting intuitive user experiences and building innovative web applications. My goal is to continuously grow and become the best version of myself in the world of technology. 🚀
+         I'm passionate about creating intuitive user experiences and creating cutting-edge web applications. My goal is to constantly evolve and become the best I can be in the world of technology. 🚀
         </p>
 
         {/* Buttons */}
