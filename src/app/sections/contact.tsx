@@ -10,7 +10,7 @@ const Contact = () => {
       className="w-full py-16 my-20 text-white flex flex-col items-center"
     >
       <h2 className="text-5xl font-extrabold mb-14 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 bg-clip-text text-center">
-        <span className="text-transparent">Contact Me</span>{" "}✉️
+        <span className="text-transparent">Contact</span>{" "}✉️
         </h2>
       <div className="w-5/6 text-center">
         <p className="mb-6 text-lg text-gray-300">
