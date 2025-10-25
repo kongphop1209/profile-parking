@@ -13,7 +13,6 @@ import {
   FaClock,
   FaSync,
   FaJava,
-  FaPython,
   FaDatabase,
   FaGitAlt,
   FaHtml5,
@@ -67,10 +66,6 @@ const Skills = () => {
         {
           icon: <FaJava className="text-[#E76F00]" />,
           name: "Java (Spring WebFlux)",
-        },
-        {
-          icon: <FaPython className="text-yellow-400" />,
-          name: "Python (FastAPI, NLP)",
         },
         {
           icon: <SiPostgresql className="text-[#336791]" />,
